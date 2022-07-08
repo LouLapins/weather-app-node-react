@@ -10,7 +10,7 @@ router.get('/all', (req, res) => {
     fetch(url)
         .then(res => res.json())
         .then(data => {
-            res.send({ data });
+            res.send(data);
         })
         .catch(err => {
             res.redirect('/error');
