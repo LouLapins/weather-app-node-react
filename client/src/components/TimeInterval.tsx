@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 
 interface ITimeIntervalProps {
   date: string;
@@ -15,5 +15,5 @@ export default function TimeInterval(props: ITimeIntervalProps) {
       <p className="mx-16">{props.temperature}</p>
       <p className="mx-16">{props.precipitation} mm/h</p>
     </div>
-  );
+  )
 }

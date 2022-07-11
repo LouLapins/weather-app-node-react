@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(bodyParser.json());
 
-const router = require('./router');
+const router = require('./routes');
 
 app.use("/weather/", router);
 
