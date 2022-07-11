@@ -1,10 +1,8 @@
-interface ITimeInterval {
-  "validTime": string,
-  "parameters": [{
-    "name": string,
-    "values": [
-      number
-    ]
-  }]
+export interface ITimeInterval {
+  validTime: string;
+  date: string;
+  time: string;
+  temperatureCelsius: number;
+  precipitation: number;
+  weatherSymbol: number | null;
 }
-export default ITimeInterval

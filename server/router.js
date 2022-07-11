@@ -3,7 +3,7 @@ const fetch = require("node-fetch");
 const { Headers } = fetch;
 let router = express.Router();
 
-// From docs (http://opendata.smhi.se/apidocs/metfcst/index.html) 
+// From docs (http://opendata.smhi.se/apidocs/metfcst/index.html):
 // coordinates = [longitude, latitude] This is the nearest grid point to the point you asked for in query parameters.
 // approvedTime = When the meteorologist approved the calculated forecast.
 // referenceTime = When the forecast was calculated (the start time for the forecast).
