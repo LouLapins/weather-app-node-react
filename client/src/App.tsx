@@ -9,9 +9,9 @@ import Day from './components/Day';
 function App() {
   return (
     <div className="App">
+      <Days />
       <Routes>
           <Route path='/' element={<Home/>} />
-          <Route path='/days' element={<Days/>} />
           <Route path="/:date" element={<Day/>} />
           <Route path='/error' element={<Error/>} />
       </Routes>
