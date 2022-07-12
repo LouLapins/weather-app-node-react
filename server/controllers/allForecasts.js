@@ -38,11 +38,13 @@ const formatWeatherData = (data) => {
         };
     });
 
-    function groupBy(arr, property) {
-        return arr.reduce(function(memo, x) {
-            if (!memo[x[property]]) { memo[x[property]] = []; }
-            memo[x[property]].push(x);
-            return memo;
+    function groupBy(array, key) {
+        return array.reduce(function(result, currentValue) {
+            if (!result[currentValue[key]]) {
+                result[currentValue[key]] = [];
+            }
+            result[currentValue[key]].push(currentValue);
+            return result;
         }, {});
     }
 
