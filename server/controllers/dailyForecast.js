@@ -2,7 +2,7 @@ const express = require("express")
 const fetch = require("node-fetch");
 const { Headers } = fetch;
 
-const formatDays = (data) => {
+const formatWeatherData = (data, chosenDate) => {
     const {
         geometry: { coordinates },
         referenceTime,
@@ -10,10 +10,11 @@ const formatDays = (data) => {
         timeSeries,
     } = data;
 
+
     let timeIntervals = timeSeries.map(function(obj) {
         const temp = obj.parameters.find((param) => param.name === "t");
 
-        // Precipitation value is mean precipitation intensity (mm/h)
+        // Precipitation value is "mean precipitation intensity" (mm/h)
 
         const precipitation = obj.parameters.find(
             (param) => param.name === "pmean"
@@ -31,17 +32,21 @@ const formatDays = (data) => {
         };
     });
 
-    return { coordinates, referenceTime, approvedTime, timeIntervals };
+    let dailyTimeIntervals = timeIntervals.filter(obj => obj.date === chosenDate);
+
+    return { coordinates, referenceTime, approvedTime, dailyTimeIntervals };
 };
 
-function getDays(req, res) {
-    const url =
+function getDailyForecast(req, res) {
 
-        "https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/validTime.json";
+    const chosenDate = req.params.day;
+    console.log(typeof(chosenDate))
+    const url =
+        "https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/16.158/lat/58.5812/data.json";
 
     fetch(url)
         .then((res) => res.json())
-        .then((data) => formatDays(data))
+        .then((data) => formatWeatherData(data, chosenDate))
         .then((data) => {
             res.setHeader("Access-Control-Allow-Origin", "*");
             res.send(data)
@@ -51,4 +56,4 @@ function getDays(req, res) {
         });
 }
 
-module.exports = getDays;
+module.exports = getDailyForecast;

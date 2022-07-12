@@ -2,6 +2,7 @@ import React from "react";
 import { addDays, toDate } from "date-fns";
 import DayLink from "./DayLink";
 
+
 export default function Days() {
   let today = new Date();
   let tenDaysFromToday = addDays(today, 10);
@@ -14,13 +15,11 @@ export default function Days() {
     day = addDays(day, 1);
   }
 
-  console.log(days);
-
   return (
-    <div>
-      {days.map((day, index: number) => {
-        return <DayLink key={index} date={day} />;
-      })}
-    </div>
+<div>
+ {days.map((day, index:number) => {
+  return <DayLink key={index} date={day}></DayLink>
+ })}
+</div>
   );
 }

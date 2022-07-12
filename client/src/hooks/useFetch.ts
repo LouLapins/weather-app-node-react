@@ -24,7 +24,7 @@ const useFetch = (path: string) => {
     fetchData()
 	
   }, [path, setData])
-
+  console.log('Hämtar data')
   return { data, error, loading }
 }
 export default useFetch
