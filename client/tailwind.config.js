@@ -4,7 +4,11 @@ module.exports = {
         "./src/**/*.{js,jsx,ts,tsx}",
     ],
     theme: {
-        extend: {},
+        extend: {
+            backgroundImage: {
+                'palace': "url('../public/img/royal-palace-full.jpg')"
+            }
+        },
     },
     plugins: [],
 }

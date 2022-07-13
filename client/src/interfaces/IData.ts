@@ -1,8 +1,10 @@
-import { IDay } from "./IDay";
+import { ITimeInterval } from "./ITimeInterval";
 
 export interface IData {
   approvedTime: string;
   referenceTime: string;
   coordinates: string;
-  groupedByDate: [IDay];
+  groupedByDate: {
+    [date: string]: ITimeInterval[];
+  };
 }
