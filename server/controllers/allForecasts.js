@@ -29,10 +29,9 @@ const formatWeatherData = (data) => {
         const symbol = obj.parameters.find((param) => param.name === "Wsymb2");
 
         return {
-            validTime: obj.validTime,
             date: obj.validTime.split("T")[0],
-            time: obj.validTime.slice(11, 16),
-            temperatureCelsius: temp.values[0],
+            time: obj.validTime.slice(11, 13),
+            temperatureCelsius: Math.round(temp.values[0]),
             precipitation: precipitation.values[0],
             weatherSymbol: symbol ? symbol.values[0] : null,
         };

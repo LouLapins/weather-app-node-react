@@ -6,7 +6,7 @@ import Error from './pages/Error';
 
 function App() {
   return (
-    <div className="App">
+    <div className="max-w-[100vw] overflow-hidden min-h-screen bg-cover bg-palace min-w-screen App">
       <Routes>
           <Route path='/' element={<Home/>} />
           <Route path='/error' element={<Error/>} />
