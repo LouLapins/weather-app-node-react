@@ -1,13 +1,15 @@
-import React from "react";
-import useFetch from "../../hooks/useFetch";
-import Forecast from "./components/Forecast";
+import React from "react"
+import Loader from "../../components/Loader"
+import useFetch from "../../hooks/useFetch"
+import ErrorMsg from "../../components/ErrorMsg"
+import Forecast from "./components/Forecast"
 
 export default function Home() {
   
-  const { data, error, loading } = useFetch("/weather/all");
+  const { data, error, loading } = useFetch("/weather/all")
 
-  if (error) return <p>Error</p>;
-  if (loading) return <p>Loading</p>;
+  if (error) return <ErrorMsg/>
+  if (loading) return <Loader/>
 
   return (
     <div className="flex justify-end">
@@ -20,5 +22,5 @@ export default function Home() {
         </div>
       </div>
     </div>
-  );
+  )
 }
