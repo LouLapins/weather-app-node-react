@@ -45,7 +45,7 @@ export default function Forecast(props: IForecastProps) {
 
   return (
     <>
-      <div className="flex justify-between bg-white rounded-md md:bg-transparent md:flex-col bg-opacity-20">
+      <div className="flex justify-between my-4 bg-white rounded-md md:my-0 md:bg-transparent md:flex-col bg-opacity-20">
         <BookmarkButton
           hasBookmark={bookmarkedDate}
           title="Save date"

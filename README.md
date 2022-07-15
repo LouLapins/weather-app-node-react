@@ -18,7 +18,7 @@ Implement routing in your SPA.
 A user should be able to bookmark a given day, and, if the data is still available via the API, open this bookmark back up to check the forecast for that day.
 
 ### Run locally
-To run locally, clone repo.
+To run locally, clone repo, open project and terminal.
 
 ### Project setup
 ```
