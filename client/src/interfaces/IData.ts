@@ -4,7 +4,8 @@ export interface IData {
   approvedTime: string;
   referenceTime: string;
   coordinates: string;
-  groupedByDate: {
+  dates: string[];
+  forecastsByDate: {
     [date: string]: ITimeInterval[];
   };
 }
