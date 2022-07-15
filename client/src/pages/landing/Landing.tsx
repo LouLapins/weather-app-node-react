@@ -9,10 +9,6 @@ export default function Home() {
   if (error) return <p>Error</p>;
   if (loading) return <p>Loading</p>;
 
-  if (data) {
-console.log(data)
-  }
-
   return (
     <div className="flex justify-end">
       <div className="w-full min-h-screen p-4 text-white bg-zinc-900 md:w-[90%] lg:w-3/4 xl:w-3/5 bg-opacity-90">
