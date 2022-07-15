@@ -1,17 +1,13 @@
 const express = require("express")
 const fetch = require("node-fetch");
 const { Headers } = fetch;
+const nodecache = require('node-cache');
+const appCache = new nodecache({ stdTTL: 60 });
 
-// From docs (http://opendata.smhi.se/apidocs/metfcst/index.html):
-// coordinates = [longitude, latitude] This is the nearest grid point to the point you asked for in query parameters.
-// approvedTime = When the meteorologist approved the calculated forecast.
-// referenceTime = When the forecast was calculated (the start time for the forecast).
-
-// Normally, a new forecast is approved once every hour, but notice that there can be occasions that differ.
+// Docs (http://opendata.smhi.se/apidocs/metfcst/index.html):
 
 const formatWeatherData = (data) => {
     const {
-        geometry: { coordinates },
         approvedTime,
         timeSeries,
     } = data;
@@ -50,23 +46,31 @@ const formatWeatherData = (data) => {
 
     const dates = Object.keys(forecastsByDate);
 
-    return { coordinates, approvedTime, forecastsByDate, dates };
+    return { approvedTime, forecastsByDate, dates };
 };
 
-function getAllForecasts(req, res) {
+async function getAllForecasts(req, res) {
     const url =
         "https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/16.158/lat/58.5812/data.json";
 
-    fetch(url)
-        .then((res) => res.json())
-        .then((data) => formatWeatherData(data))
-        .then((data) => {
-            res.setHeader("Access-Control-Allow-Origin", "*");
-            res.send(data)
-        })
-        .catch((err) => {
-            res.redirect("/error");
-        });
+    if (appCache.has('forecasts')) {
+        return res.send(appCache.get('forecasts'))
+    } else {
+        await fetch(url)
+            .then((res) => res.json())
+            .then((data) => formatWeatherData(data))
+            .then((data) => {
+                res.setHeader("Access-Control-Allow-Origin", "*");
+                appCache.set("forecasts", data);
+                res.send(data)
+            })
+            .catch((err) => {
+                res.redirect("/error");
+                console.log(err)
+            });
+
+    }
+
 }
 
 module.exports = getAllForecasts;
