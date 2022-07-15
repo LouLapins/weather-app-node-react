@@ -12,7 +12,6 @@ const { Headers } = fetch;
 const formatWeatherData = (data) => {
     const {
         geometry: { coordinates },
-        referenceTime,
         approvedTime,
         timeSeries,
     } = data;
@@ -51,7 +50,7 @@ const formatWeatherData = (data) => {
 
     const dates = Object.keys(forecastsByDate);
 
-    return { coordinates, referenceTime, approvedTime, forecastsByDate, dates };
+    return { coordinates, approvedTime, forecastsByDate, dates };
 };
 
 function getAllForecasts(req, res) {
