@@ -47,9 +47,11 @@ const formatWeatherData = (data) => {
         }, {});
     }
 
-    const groupedByDate = groupBy(timeIntervals, 'date');
+    const forecastsByDate = groupBy(timeIntervals, 'date');
 
-    return { coordinates, referenceTime, approvedTime, groupedByDate };
+    const dates = Object.keys(forecastsByDate);
+
+    return { coordinates, referenceTime, approvedTime, forecastsByDate, dates };
 };
 
 function getAllForecasts(req, res) {
