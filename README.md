@@ -18,18 +18,25 @@ Implement routing in your SPA.
 A user should be able to bookmark a given day, and, if the data is still available via the API, open this bookmark back up to check the forecast for that day.
 
 ### Run locally
-To run locally, clone repo, open project and terminal.
+To run locally, download repo.
 
 ### Project setup
+Open terminal at project root and paste command:
 ```
-npm install
+cd server && npm install
+```
+Then add new terminal and paste command:
+```
+cd client && npm install
 ```
 ### Run backend
+In server terminal paste command:
 ```
-cd server && npm run start
+npm run start
 ```
 ### Run frontend
+In client terminal paste command:
 ```
-cd client && npm run start
+npm run start
 ```
 The frontend server will run on http://localhost:3000, where you can try the app.
