@@ -13,7 +13,7 @@ export default function Home() {
 
   return (
     <div className="flex justify-end">
-      <div className="w-full min-h-screen p-4 text-white bg-zinc-900 md:w-[90%] lg:w-3/4 xl:w-3/5 bg-opacity-90">
+      <div className="w-full min-h-screen p-4 text-white bg-zinc-900 md:w-[90%] lg:w-3/4 xl:w-3/5 2xl:w-1/2 bg-opacity-90">
         <h1 className="font-bold text-center md:text-2xl">
           Stockholm Royal Palace <span className="font-light">Weather</span>
         </h1>

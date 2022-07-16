@@ -1,45 +1,45 @@
-import React, { useState } from "react";
-import { parse } from "date-fns";
-import { IData } from "../../../interfaces/IData";
-import BookmarkButton from "./BookmarkButton";
-import ForecastIssued from "./ForecastIssued";
-import TabGroup from "../../../components/tabs/TabGroup";
+import React, { useState } from "react"
+import { parse } from "date-fns"
+import { IData } from "../../../interfaces/IData"
+import BookmarkButton from "./BookmarkButton"
+import ForecastIssued from "./ForecastIssued"
+import TabGroup from "../../../components/tabs/TabGroup"
 
 interface IForecastProps {
-  data: IData;
+  data: IData
 }
 
 export default function Forecast(props: IForecastProps) {
-  const dateStrings = props.data.dates;
+  const dateStrings = props.data.dates
 
   const dates = dateStrings.map((date) =>
     parse(date, "yyyy-MM-dd", new Date())
-  );
+  )
 
-  const storedDate = localStorage.getItem("storedDate");
-  const [selectedDate, setSelectedDate] = useState(dateStrings[0]);
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const [bookmarkedDate, setBookmarkedDate] = useState(storedDate);
+  const storedDate = localStorage.getItem("storedDate")
+  const [selectedDate, setSelectedDate] = useState(dateStrings[0])
+  const [selectedIndex, setSelectedIndex] = useState(0)
+  const [bookmarkedDate, setBookmarkedDate] = useState(storedDate)
 
   function changeDate(index: number) {
-    setSelectedDate(dateStrings[index]);
-    setSelectedIndex(index);
+    setSelectedDate(dateStrings[index])
+    setSelectedIndex(index)
   }
 
   function saveBookmark() {
-    setBookmarkedDate(selectedDate);
-    localStorage.setItem("storedDate", selectedDate);
+    setBookmarkedDate(selectedDate)
+    localStorage.setItem("storedDate", selectedDate)
   }
 
   function getBookmark() {
     if (!storedDate || storedDate === null) {
-      alert("You have no bookmarks.");
+      alert("You have no bookmarks.")
     }
     if (storedDate && dateStrings.includes(storedDate)) {
-      const index = dateStrings.indexOf(storedDate);
-      changeDate(index);
+      const index = dateStrings.indexOf(storedDate)
+      changeDate(index)
     } else {
-      alert("Sorry! The forecast you bookmarked is no longer available from the API.");
+      alert("Sorry! The forecast you bookmarked is no longer available from the API.")
     }
   }
 
@@ -70,5 +70,5 @@ export default function Forecast(props: IForecastProps) {
       </div>
       <ForecastIssued date={props.data.approvedTime} />
     </>
-  );
+  )
 }
